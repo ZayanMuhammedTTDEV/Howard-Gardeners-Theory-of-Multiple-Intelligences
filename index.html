@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smartest.org | Gardner's Theory of Multiple Intelligences    </title>
+    <style>
+        body{
+            font-family: cursive;
+            background-color:  rgb(243, 243, 243);
+        }
+
+        p{
+            font-family: cursive;
+            color:cornflowerblue;
+        }
+
+        li{
+            color: cornflowerblue;
+        }
+
+        .write-an-essay{
+            background-color: rgb(103, 190, 217);
+            border: 10px;
+            padding: 15px;
+            border-radius: 25px;
+        }
+
+        #essay-input{
+            height: 75px;
+            width: 75%;
+            border-radius: 20px;
+            margin: 10px;
+            font-size: xx-large;
+        }
+
+        label{
+            font-family: cursive;
+        }
+
+        h1{
+            font-family: cursive;
+            text-decoration: underline;
+        }
+
+        button{
+            border-radius: 7.5px;
+            height: auto;
+            width: auto;
+            font-size: x-large;
+            font-family: cursive;
+            background-color: azure;
+        }
+
+
+
+        h2,h3,h4,h5,h6{
+            font-family: cursive;
+            text-decoration: underline;
+            color: rgb(103, 190, 217);
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #a3b18a;
+            padding-bottom: 10px;
+        }
+
+        .category-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; /* Allows wrapping on smaller screens */
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .category-menu a {
+            text-decoration: none;
+            color: #588157; /* Medium green */
+            padding: 10px 15px;
+            border: 1px solid #a3b18a;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+            white-space: nowrap; /* Keep links from breaking oddly */
+        }
+
+        .category-menu a:hover {
+            background-color: #dad7cd; /* Subtle hover effect */
+            transform: translateY(-2px);
+        }
+
+        /* --- The CSS Magic: Hiding/Showing Content with :target --- */
+
+        /* 1. Hide all detail sections by default */
+        .detail-section {
+            display: none;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 2. When a link is clicked, its target ID becomes active and is displayed */
+        .detail-section:target {
+            display: block;
+        }
+
+        /* --- Gallery Layout and Visuals --- */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .item {
+            flex: 1 1 300px; /* Responsive sizing: 300px base width, but grows/shrinks */
+            max-width: 400px;
+            border: 1px solid #a3b18a;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+
+        .item:hover {
+            box-shadow: 0 0 15px rgba(88, 129, 87, 0.5); /* Emphasize interaction */
+        }
+
+        .item img {
+            width: 100%;
+            height: 200px; /* Fixed height for image consistency */
+            object-fit: cover;
+            display: block;
+        }
+
+        figcaption {
+            padding: 15px;
+            background-color: #d8e3d0; /* Light background for classification text */
+            font-style: italic;
+            font-size: 0.95em;
+        }
+
+        h2 {
+            color: #40583d;
+            border-bottom: 1px dashed #a3b18a;
+            padding-bottom: 10px;
+        }
+
+        .drawing_app{
+            background-color: rgb(103, 190, 217);
+            font-family: "Roboto", sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 10px;
+            border-radius: 25px;
+        }
+
+        canvas {
+        border: 2px solid steelblue;
+        background: #fff;
+        }
+
+        .toolbox {
+        background-color: steelblue;
+        border: 1px solid slateblue;
+        display: flex;
+        width: 400px;
+        padding: 1rem;
+        }
+
+        .exercise-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+            background-color: white;
+            border: 1px solid #e2e8f0;
+        }
+        .exercise-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        /* Pure CSS Trick: Visually change the card when the hidden checkbox is checked */
+        .exercise-checkbox:checked + .card-content {
+            background-color: #d1fae5; /* Light green success background */
+        }
+        .exercise-checkbox:checked + .card-content .exercise-status {
+            display: block;
+        }
+        .exercise-checkbox:checked + .card-content .text-gray-900 {
+            text-decoration:line-through;
+            color: #10b981 !important; /* Green text for completed */
+        }
+        .exercise-checkbox {
+            display: none; /* Hide the actual checkbox */
+        }
+
+        .game-container {
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            font-family: 'Balsamiq Sans', cursive;
+            color: #334155;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 10px;
+            width: 100%;
+            aspect-ratio: 1 / 1; /* Ensures a square board */
+            margin: 20px auto;
+        }
+
+        .cell {
+            background-color: #e2e8f0;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3.5rem; /* Larger text for X/O */
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+            user-select: none;
+            line-height: 1; /* Fix vertical alignment */
+        }
+
+        .cell:not(.X):not(.O):hover {
+            background-color: #cbd5e1;
+            transform: scale(1.02);
+        }
+
+        /* Styling for 'X' */
+        .cell.X {
+            color: #ef4444; /* Red */
+            background-color: #fee2e2;
+            box-shadow: inset 0 0 10px rgba(239, 68, 68, 0.5);
+            animation: popIn 0.3s ease-out;
+        }
+
+        /* Styling for 'O' */
+        .cell.O {
+            color: #3b82f6; /* Blue */
+            background-color: #eff6ff;
+            box-shadow: inset 0 0 10px rgba(59, 130, 246, 0.5);
+            animation: popIn 0.3s ease-out;
+        }
+
+        /* Styling for winning cells */
+        .cell.win {
+            background-color: #10b981; /* Green */
+            color: #ffffff;
+            box-shadow: 0 0 20px #059669;
+            transform: scale(1.05);
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Status Text */
+        #status-message {
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 600;
+            height: 30px; /* Reserve space to prevent CLS */
+        }
+
+        /* Reset Button */
+        #reset-button {
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #reset-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body>
+    <h1>Gardner's Theory of Multiple Intelligences</h1>
+    <img src="https://i0.wp.com/hubschooling.com/wp-content/uploads/2022/11/mi-theory.png?w=1066&ssl=1" alt="Chart of Multiple Intelligences" height="50%" width="50%">
+    <hr>
+    <div class="linguistic">
+        <h2 style="color: rgb(103, 190, 217);">Linguistic Intelligence</h2>
+        <p>
+            People who are strong in linguistic-verbal intelligence are able to use words well, both when writing and speaking. These individuals are typically very good at writing stories, memorizing information, and reading.
+        </p>
+        <h3 style="color: rgb(103, 190, 217);">
+            Strengths
+        </h3>
+        <p>
+            Words, language, and writing
+        </p>
+        <h3>
+            Characteristics
+        </h3>
+        <p>People with linguistic-verbal intelligence:</p>
+        <ol>
+            <li>
+                Remember written and spoken information.
+            </li>
+            <li>
+                Enjoy reading and writing.
+            </li>
+            <li>
+                Debate or give persuasive speeches.
+            </li>
+            <li>
+                Are able to explain things well.
+            </li>
+            <li>
+                Use humor when telling stories.
+            </li>
+        </ol>
+        <h3>
+            Potential Career Choices
+        </h3>
+        <p>
+            If you're strong in linguistic-verbal intelligence, good career choices for you are:
+        </p>
+        <ol>
+            <li>
+                Writer/journalist
+            </li>
+            <li>
+                Lawyer
+            </li>
+            <li>
+                Teacher
+            </li>
+        </ol>
+        <div class="write-an-essay">
+            <label for="essay">This is a game about linguistic intelligence. <br> Write an essay about your fav sport:</label>
+            <br>
+            <button type="submit" onclick="submit()">
+                submit
+            </button>
+            <input type="text" name="essay" id="essay-input">
+        </div>
+    </div>
+    <hr>
+    <div class="logical">
+        <h2>
+            Logical-Mathematical Intelligence
+        </h2>
+        <p>
+            People who are strong in logical-mathematical intelligence are good at reasoning, recognizing patterns, and logically analyzing problems. These individuals tend to think conceptually about numbers, relationships, and patterns.
+        </p>
+        <h3>
+            Strengths
+        </h3>
+        <p>
+            Analyzing problems and mathematical operations.
+        </p>
+        <h3>
+            Characteristics
+        </h3>
+        <p>
+            People with logical-mathematical intelligence:
+        </p>
+        <ol>
+            <li>
+                Have excellent problem-solving skills.
+            </li>
+            <li>
+                Enjoy thinking about abstract ideas.
+            </li>
+            <li>
+                Like conducting scientific experiments.
+            </li>
+            <li>
+                Can solve complex computations.
+            </li>
+        </ol>
+        <h3>
+            Potential Career Choices
+        </h3>
+        <p>
+            If you're strong in logical-mathematical intelligence, good career choices for you are:
+        </p>
+        <ol>
+            <li>
+                Scientist
+            </li>
+            <li>
+                Mathematician
+            </li>
+            <li>
+                Computer programmer
+            </li>
+            <li>
+                Engineer
+            </li>
+            <li>
+                Accountant
+            </li>
+        </ol>
+        <main style="padding: 24px; background-color: white; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); border-radius: 1rem; max-width: 90vw; width: 500px;">
+            <h1 class="text-3xl font-bold text-gray-800 text-center mb-4">Sudoku Challenge</h1>
+
+            <!-- The Sudoku Grid Container -->
+            <div data-grid style="display: grid; grid-template-columns: repeat(9, 1fr); grid-template-rows: repeat(9, 1fr); border: 3px solid #374151; aspect-ratio: 1 / 1;">
+                <!-- Cells will be dynamically generated here with inline styles applied by JS -->
+            </div>
+
+            <!-- Controls -->
+            <div data-controls style="display: flex; gap: 12px; margin-top: 24px; justify-content: center;">
+                <button onclick="initGame()" style="padding: 10px 16px; border-radius: 0.5rem; font-weight: 600; transition: background-color 0.2s, transform 0.1s; cursor: pointer; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); border: none; background-color: #2563eb; color: white;">New Game</button>
+                <button onclick="checkFullSolution()" style="padding: 10px 16px; border-radius: 0.5rem; font-weight: 600; transition: background-color 0.2s, transform 0.1s; cursor: pointer; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); border: none; background-color: #10b981; color: white;">Check</button>
+                <button onclick="solvePuzzle()" style="padding: 10px 16px; border-radius: 0.5rem; font-weight: 600; transition: background-color 0.2s, transform 0.1s; cursor: pointer; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); border: none; background-color: #f59e0b; color: white;">Solve</button>
+            </div>
+
+            <!-- Message Area -->
+            <p data-message style="margin-top: 20px; text-align: center; font-size: 1.125rem; min-height: 28px; font-weight: 500;">This is a logical game</p>
+        </main>
+    </div>
+    <br>
+    <hr>
+    <div class="musical">
+        <h2>
+            Musical Intelligence
+        </h2>
+        <p>
+            People who have strong musical intelligence are good at thinking in patterns, rhythms, and sounds. They have a strong appreciation for music and are often good at musical composition and performance
+        </p>
+        <h3>
+            Strengths
+        </h3>
+        <p>
+            Rhythm and music
+        </p>
+        <h3>
+            Characteristics
+        </h3>
+        <p>
+            People with musical intelligence:
+        </p>
+        <ol>
+            <li>
+                Enjoy singing and playing musical instruments.
+            </li>
+            <li>
+                Recognize musical patterns and tones easily.
+            </li>
+            <li>
+                Remember songs and melodies.
+            </li>
+            <li>
+                Have a rich understanding of musical structure, rhythm, and notes.
+            </li>
+        </ol>
+        <h3>
+            Potential Career Choices
+        </h3>
+        <p>If you're strong in musical intelligence, good career choices for you are:</p>
+        <ol>
+            <li>
+                Musician
+            </li>
+            <li>
+                Composer
+            </li>
+            <li>
+                Singer
+            </li>
+            <li>
+                Music teacher
+            </li>
+            <li>
+                Conductor
+            </li>
+        </ol>    
+        <div class="music_simulator">
+            <audio src="Alva_Kannale.mp3" id="music">
+            </audio>
+            <button id="play_music">
+                Play music
+            </button>
+        </div>
+    </div>
+    <hr>
+    <div class="visual">
+        <h2>
+            Visual-Spatial Intelligence
+        </h2>
+        <p>
+            People who are strong in visual-spatial intelligence are good at visualizing things. These individuals are often good with directions as well as maps, charts, videos, and pictures.
+            <br>
+            Research suggests that visual-spatial abilities play an important role in reading and arithmetic skills, as well as in overall academic achievement.
+        </p>
+        <h3>
+            Strengths
+        </h3>
+        <p>
+            Visual and spatial judgment
+        </p>
+        <h3>
+            Characteristics
+        </h3>
+        <p>
+            People with visual-spatial intelligence:
+        </p>
+        <ol>
+            <li>
+                Read and write for enjoyment.
+            </li>
+            <li>
+                Are good at putting puzzles together.
+            </li>
+            <li>
+                Interpret pictures, graphs, and charts well.
+            </li>
+            <li>
+                Enjoy drawing, painting, and the visual arts.
+            </li>
+            <li>
+                Recognize patterns easily.
+            </li>
+        </ol>
+        <h3>
+            Potential Career Choices
+        </h3>
+        <p>
+            If you're strong in visual-spatial intelligence, good career choices for you are: 
+        </p>
+        <ol>
+            <li>
+                Architect
+            </li>
+            <li>
+                Artist
+            </li>
+            <li>
+                Engineer
+            </li>
+        </ol>
+        <div class="drawing_app">
+            <canvas id="canvas" width="430px" height="300px"></canvas>
+            <div class="toolbox">
+                <button id="decrease">-</button>
+                <span id="size">10</span>
+                <button id="increase">+</button>
+                <input type="color" id="color" />
+                <button id="clear">X</button>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="physical">
+        <h2>
+            Bodily-Kinesthetic Intelligence
+        </h2>
+        <p>
+            Those who have high bodily-kinesthetic intelligence are said to be good at body movement, performing actions, and physical control. People who are strong in this area tend to have excellent hand-eye coordination and dexterity
+        </p>
+        <h3>
+            Strengths
+        </h3>
+        <p>
+            Physical movement, motor control
+        </p>
+        <h3>
+            Characteristics
+        </h3>
+        <p>
+            People with bodily-kinesthetic intelligence:
+        </p>
+        <ol>
+            <li>
+                Are skilled at dancing and sports.
+            </li>
+            <li>
+                Enjoy creating things with his or her hands.
+            </li>
+            <li>
+                Have excellent physical coordination.
+            </li>
+            <li>
+                Remember by doing, rather than hearing or seeing.
+            </li>
+        </ol>
+        <h3>
+            Potential Career Choices
+        </h3>
+        <p>
+            If you're strong in bodily-kinesthetic intelligence, good career choices for you are:
+        </p>
+        <ol>
+            <li>
+                Craftsperson
+            </li>            
+            <li>
+                Dancer
+            </li>
+            <li>
+                Builder
+            </li>
+            <li>
+                Surgeon
+            </li>
+            <li>
+                Sculptor
+            </li>
+            <li>
+                Actor
+            </li>            
+        </ol>
+        <div class="exercise_app">
+                <div class="max-w-4xl mx-auto">
+                    <!-- Header Section -->
+                    <header class="text-center mb-10 p-6 rounded-xl bg-white shadow-lg">
+                        <h2 class="text-4xl font-bold text-gray-800 mb-2">My Daily Workout</h2>
+                        <p class="text-lg text-gray-500">A simple, effective routine for today.</p>
+                    </header>
+
+                    <!-- Exercise Grid -->
+                    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+                        <!-- Exercise 1: Pushups -->
+                        <label for="pushups" class="cursor-pointer exercise-card rounded-xl shadow-md">
+                            <input type="checkbox" id="pushups" class="exercise-checkbox">
+                            <div class="card-content p-6 flex flex-col h-full">
+                                <div class="flex items-center justify-between mb-3">
+                                    <h2 class="text-xl font-semibold text-gray-900">1. Pushups</h2>
+                                    <span class="exercise-status hidden text-sm font-bold text-green-600 bg-green-100 px-3 py-1 rounded-full"></span>
+                                </div>
+                                <p class="text-gray-600 mb-4 flex-grow">
+                                    Classic full-body strength exercise targeting chest, shoulders, and triceps. Keep your core tight.
+                                </p>
+                                <div class="mt-auto pt-2 border-t border-gray-100">
+                                    <p class="text-sm text-indigo-600 font-medium">Target: 3 Sets of 12 Reps</p>
+                                </div>
+                            </div>
+                        </label>
+
+                        <hr>
+
+                        <!-- Exercise 2: Squats -->
+                        <label for="squats" class="cursor-pointer exercise-card rounded-xl shadow-md">
+                            <input type="checkbox" id="squats" class="exercise-checkbox">
+                            <div class="card-content p-6 flex flex-col h-full">
+                                <div class="flex items-center justify-between mb-3">
+                                    <h2 class="text-xl font-semibold text-gray-900">2. Bodyweight Squats</h2>
+                                    <span class="exercise-status hidden text-sm font-bold text-green-600 bg-green-100 px-3 py-1 rounded-full"></span>
+                                </div>
+                                <p class="text-gray-600 mb-4 flex-grow">
+                                    Fundamental lower-body movement. Sit back as if reaching for a chair. Focus on depth.
+                                </p>
+                                <div class="mt-auto pt-2 border-t border-gray-100">
+                                    <p class="text-sm text-indigo-600 font-medium">Target: 3 Sets of 15 Reps</p>
+                                </div>
+                            </div>
+                        </label>
+
+                        <hr>
+
+                        <!-- Exercise 3: Plank -->
+                        <label for="plank" class="cursor-pointer exercise-card rounded-xl shadow-md">
+                            <input type="checkbox" id="plank" class="exercise-checkbox">
+                            <div class="card-content p-6 flex flex-col h-full">
+                                <div class="flex items-center justify-between mb-3">
+                                    <h2 class="text-xl font-semibold text-gray-900">3. Forearm Plank</h2>
+                                    <span class="exercise-status hidden text-sm font-bold text-green-600 bg-green-100 px-3 py-1 rounded-full"></span>
+                                </div>
+                                <p class="text-gray-600 mb-4 flex-grow">
+                                    Excellent for core stability and endurance. Maintain a straight line from head to heels.
+                                </p>
+                                <div class="mt-auto pt-2 border-t border-gray-100">
+                                    <p class="text-sm text-indigo-600 font-medium">Target: 3 Sets of 60 Seconds</p>
+                                </div>
+                            </div>
+                        </label>
+
+                        <hr>
+
+                        <!-- Exercise 4: Lunges -->
+                        <label for="lunges" class="cursor-pointer exercise-card rounded-xl shadow-md">
+                            <input type="checkbox" id="lunges" class="exercise-checkbox">
+                            <div class="card-content p-6 flex flex-col h-full">
+                                <div class="flex items-center justify-between mb-3">
+                                    <h2 class="text-xl font-semibold text-gray-900">4. Walking Lunges</h2>
+                                    <span class="exercise-status hidden text-sm font-bold text-green-600 bg-green-100 px-3 py-1 rounded-full"></span>
+                                </div>
+                                <p class="text-gray-600 mb-4 flex-grow">
+                                    Works quadriceps, hamstrings, and glutes. Ensure your front knee stays behind your toes.
+                                </p>
+                                <div class="mt-auto pt-2 border-t border-gray-100">
+                                    <p class="text-sm text-indigo-600 font-medium">Target: 3 Sets of 10 Reps (per leg)</p>
+                                </div>
+                            </div>
+                        </label>
+
+                        <hr>
+
+                        <!-- Exercise 5: Calf Raises -->
+                        <label for="calf-raises" class="cursor-pointer exercise-card rounded-xl shadow-md">
+                            <input type="checkbox" id="calf-raises" class="exercise-checkbox">
+                            <div class="card-content p-6 flex flex-col h-full">
+                                <div class="flex items-center justify-between mb-3">
+                                    <h2 class="text-xl font-semibold text-gray-900">5. Calf Raises</h2>
+                                    <span class="exercise-status hidden text-sm font-bold text-green-600 bg-green-100 px-3 py-1 rounded-full"></span>
+                                </div>
+                                <p class="text-gray-600 mb-4 flex-grow">
+                                    Isolation exercise for the calf muscles. Hold a wall for balance and focus on a slow, controlled movement.
+                                </p>
+                                <div class="mt-auto pt-2 border-t border-gray-100">
+                                    <p class="text-sm text-indigo-600 font-medium">Target: 3 Sets of 20 Reps</p>
+                                </div>
+                            </div>
+                        </label>
+
+                        <hr>
+
+                        <!-- Exercise 6: Jumping Jacks -->
+                        <label for="jacks" class="cursor-pointer exercise-card rounded-xl shadow-md">
+                            <input type="checkbox" id="jacks" class="exercise-checkbox">
+                            <div class="card-content p-6 flex flex-col h-full">
+                                <div class="flex items-center justify-between mb-3">
+                                    <h2 class="text-xl font-semibold text-gray-900">6. Jumping Jacks</h2>
+                                    <span class="exercise-status hidden text-sm font-bold text-green-600 bg-green-100 px-3 py-1 rounded-full"></span>
+                                </div>
+                                <p class="text-gray-600 mb-4 flex-grow">
+                                    A quick cardio burst to finish the routine and elevate your heart rate.
+                                </p>
+                                <div class="mt-auto pt-2 border-t border-gray-100">
+                                    <p class="text-sm text-indigo-600 font-medium">Target: 2 Sets of 60 Seconds</p>
+                                </div>
+                            </div>
+                        </label>
+
+                    </div>
+
+                    <!-- Footer / Daily Message -->
+                    <footer class="text-center mt-10 p-6">
+                        <p class="text-gray-500 text-sm">Tap any exercise card to mark it as complete. Refresh the page to reset the day.</p>
+                    </footer>
+
+                </div>
+        </div>
+    </div>
+    <hr>
+    <div class="interpersonal">
+        <h2>
+            Interpersonal Intelligence
+        </h2>
+        <p>
+            Strong interpersonal intelligence is a skill that involves being good at understanding and interacting with other people. These individuals are skilled at assessing the emotions, motivations, desires, and intentions of those around them.
+        </p>
+        <h3>
+            Strengths
+        </h3>
+        <p>
+            Understanding and relating to other people.
+        </p>
+        <h3>
+            Characteristics
+        </h3>
+        <p>
+            People with interpersonal intelligence:
+        </p>
+        <ol>
+            <li>
+                Communicate well verbally.
+            </li>
+            <li>
+                Are skilled at nonverbal communication.
+            </li>
+            <li>
+                See situations from different perspectives.
+            </li>
+            <li>
+                Create positive relationships with others.
+            </li>
+            <li>
+                Resolve conflicts in group settings.
+            </li>
+        </ol>
+        <h3>
+            Potential Career Choices
+        </h3>
+        <p>
+            If you're strong in interpersonal intelligence, good career choices for you are:
+        </p>
+        <ol>
+            <li>
+                Psychologist
+            </li>
+            <li>
+                Philosopher
+            </li>
+            <li>
+                Counselor
+            </li>
+            <li>
+                Salesperson
+            </li>
+            <li>
+                Politician
+            </li>
+        </ol>
+        <div class="game-container">
+        <h1>Tic-Tac-Toe</h1>
+
+        <!-- Status Message Area -->
+        <div id="status-message" class="text-gray-700">
+            Player X's Turn
+        </div>
+
+        <!-- Tic-Tac-Toe Board -->
+        <div class="board" id="board">
+            <!-- Cells will be generated here by JavaScript -->
+        </div>
+
+        <!-- Reset Button -->
+        <div class="mt-8 text-center">
+            <button id="reset-button" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50">
+                New Game
+            </button>
+        </div>
+    </div>
+    
+
+    </div>
+    <hr>
+    <div class="intrapersonal">
+        <h2>
+            Intrapersonal Intelligence
+        </h2>
+        <p>
+            Individuals who are strong in intrapersonal intelligence are good at being aware of their own emotional states, feelings, and motivations. They tend to enjoy self-reflection and analysis, including daydreaming, exploring relationships with others, and assessing their personal strengths.
+        </p>
+        <h3>
+            Strengths
+        </h3>
+        <p>
+            Introspection and self-reflection
+        </p>
+        <h3>
+            Characteristics
+        </h3>
+        <p>
+            People with intrapersonal intelligence:
+        </p>
+        <ol>
+            <li>
+                Analyze their strengths and weaknesses well.
+            </li>
+            <li>
+                Enjoy analyzing theories and ideas.
+            </li>
+            <li>
+                Have excellent self-awareness.
+            </li>
+            <li>
+                Understand the basis for his or her own motivations and feelings.
+            </li>
+        </ol>
+        <h3>
+            Potential Career Choices
+        </h3>
+        <p>
+            If you're strong in intrapersonal intelligence, good career choices for you are:
+        </p>
+        <ol>
+            <li>
+                Philosopher
+            </li>
+            <li>
+                Writer
+            </li>
+            <li>
+                Theorist
+            </li>
+            <li>
+                Scientist
+            </li>
+        </ol>
+        <div class="emotion-tracker">
+            <h3>
+                Emotion tracker
+            </h3>
+            <div class="emoji-btn">
+                <button class="happy" onclick="console.log('You are feeling happy')">
+                    <p style="font-size: 100px;">
+                        🙂
+                    </p>
+                    Happy
+                </button>
+                <button class="excited" onclick="console.log('You are feeling excited')">
+                    <p style="font-size: 100px;">
+                        😁
+                    </p>
+                    Excited
+                </button>
+                <button class="moodless" onclick="console.log('You are mood less')"">
+                    <p style="font-size: 100px;">
+                        😶
+                    </p>
+                    Mood less
+                </button>
+                <button class="moodless" onclick="console.log('You are feeling sad')">
+                    <p style="font-size: 100px;">
+                        😭
+                    </p>
+                    Sad
+                </button>
+                <button class="moodless" onclick="console.log('You are feeling Scared')">
+                    <p style="font-size: 100px;">
+                        😬
+                    </p>
+                    Scared
+                </button>
+                <button class="moodless" onclick="console.log('You are feeling Angry')">
+                    <p style="font-size: 100px;">
+                        😡
+                    </p>
+                    Angry
+                </button>
+            </div>
+            <p>
+                To know your emotion check the console of the website.
+            </p>
+        </div>
+    </div>
+    <hr>
+    <div class="natural">
+        <h2>
+            Naturalistic Intelligence
+        </h2>
+        <p>
+            Naturalistic intelligence is the most recent addition to Gardner’s theory and has been met with more resistance than his original seven intelligences. According to Gardner, individuals who are high in this type of intelligence are more in tune with nature and are often interested in nurturing, exploring the environment, and learning about other species. These individuals are said to be highly aware of even subtle changes to their environments.
+        </p>
+        <h3>
+            Strengths
+        </h3>
+        <p>
+            Finding patterns and relationships to nature.
+        </p>
+        <h3>
+            Characteristics
+        </h3>
+        <p>
+            People with naturalistic intelligence:
+        </p>
+        <ol>
+            <li>
+                Are interested in subjects such as botany, biology, and zoology.
+            </li>
+            <li>
+                Categorize and catalog information easily.
+            </li>
+            <li>
+                Enjoy camping, gardening, hiking, and exploring the outdoors.
+            </li>
+            <li>
+                Dislikes learning unfamiliar topics that have no connection to nature.
+            </li>
+        </ol>
+        <h3>
+            Potential Career Choices
+        </h3>
+        <p>
+            If you're strong in naturalistic intelligence, good career choices for you are:
+        </p>
+        <ol>
+            <li>
+                Biologist
+            </li>
+            <li>
+                Conservationist
+            </li>
+            <li>
+                Gardener
+            </li>
+            <li>
+                Farmer
+            </li>
+        </ol>
+        <div class="nature_app">
+            <header>
+        <h1 style="color: #40583d; font-size: 2.5em;">
+            🌿 Local Ecosystem Explorer
+        </h1>
+        <p style="color: #6a7c66;">
+            A guide to classify and understand our regional flora and fauna. Select a category below.
+        </p>
+    </header>
+
+    <main style="max-width: 1200px; margin: 0 auto; padding: 0 15px;">
+        <nav class="category-menu">
+            <!-- Navigation links trigger the :target CSS rule -->
+            <a href="#trees">Trees & Shrubs</a>
+            <a href="#insects">Insects & Bugs</a>
+            <a href="#rocks">Minerals & Rocks</a>
+            <!-- Link back to the main view -->
+            <a href="#">Clear Selection</a>
+        </nav>
+
+        <section id="category-details">
+
+            <!-- TREES & SHRUBS SECTION -->
+            <article id="trees" class="detail-section">
+                <h2>🌲 Deciduous Trees</h2>
+                <div class="gallery">
+                    <figure class="item">
+                        <img src="https://placehold.co/400x200/588157/ffffff?text=Oak+Leaf" alt="Oak Tree Leaf">
+                        <figcaption>
+                            <strong style="color: #384236;">Quercus (Oak):</strong> Known for lobed leaves and producing hard-shelled acorns. Vital habitat for many insects.
+                        </figcaption>
+                    </figure>
+
+                    <figure class="item">
+                        <img src="https://placehold.co/400x200/a3b18a/ffffff?text=Maple+Leaf" alt="Maple Tree Leaf">
+                        <figcaption>
+                            <strong style="color: #384236;">Acer (Maple):</strong> Distinct, palmate leaves (5 points). Source of edible sap and brilliant autumn colors.
+                        </figcaption>
+                    </figure>
+
+                    <figure class="item">
+                        <img src="https://placehold.co/400x200/dad7cd/384236?text=Willow+Branch" alt="Willow Branch">
+                        <figcaption>
+                            <strong style="color: #384236;">Salix (Willow):</strong> Often found near water. Known for its flexible branches and long, slender leaves.
+                        </figcaption>
+                    </figure>
+                </div>
+            </article>
+
+            <!-- INSECTS & BUGS SECTION -->
+            <article id="insects" class="detail-section">
+                <h2>🦋 Local Insects & Arthropods</h2>
+                <div class="gallery">
+                    <figure class="item">
+                        <img src="https://placehold.co/400x200/5a189a/ffffff?text=Monarch+Wing" alt="Monarch Butterfly">
+                        <figcaption>
+                            <strong style="color: #384236;">Monarch Butterfly:</strong> Famous for its massive annual migration. Dependent on milkweed for larvae.
+                        </figcaption>
+                    </figure>
+
+                    <figure class="item">
+                        <img src="https://placehold.co/400x200/3a5a40/ffffff?text=Praying+Mantis" alt="Praying Mantis">
+                        <figcaption>
+                            <strong style="color: #384236;">Praying Mantis:</strong> A carnivorous predator. Its forelegs are uniquely adapted for grasping prey.
+                        </figcaption>
+                    </figure>
+
+                    <figure class="item">
+                        <img src="https://placehold.co/400x200/a0522d/ffffff?text=Ant+Colony" alt="Ant Colony">
+                        <figcaption>
+                            <strong style="color: #384236;">Formicidae (Ants):</strong> Highly social insects living in complex, organized colonies. Essential soil aerators.
+                        </figcaption>
+                    </figure>
+                </div>
+            </article>
+
+            <!-- MINERALS & ROCKS SECTION -->
+            <article id="rocks" class="detail-section">
+                <h2>⛰️ Minerals & Geological Formations</h2>
+                <div class="gallery">
+                    <figure class="item">
+                        <img src="https://placehold.co/400x200/4a4e69/ffffff?text=Quartz+Crystal" alt="Quartz Crystal">
+                        <figcaption>
+                            <strong style="color: #384236;">Quartz:</strong> A common, hard mineral. Often found in hexagonal prisms. Its chemical formula is $SiO_2$.
+                        </figcaption>
+                    </figure>
+
+                    <figure class="item">
+                        <img src="https://placehold.co/400x200/b08779/ffffff?text=Granite+Specimen" alt="Granite Specimen">
+                        <figcaption>
+                            <strong style="color: #384236;">Granite:</strong> An intrusive igneous rock formed from slowly cooling magma. Contains visible grains of feldspar and quartz.
+                        </figcaption>
+                    </figure>
+
+                    <figure class="item">
+                        <img src="https://placehold.co/400x200/a3885d/ffffff?text=Limestone+Piece" alt="Limestone Piece">
+                        <figcaption>
+                            <strong style="color: #384236;">Limestone:</strong> A sedimentary rock composed mainly of skeletal fragments of marine organisms. Primarily $CaCO_3$.
+                        </figcaption>
+                    </figure>
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+    <footer style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #a3b18a; font-size: 0.8em; color: #6a7c66;">
+        <p>This project demonstrates naturalistic classification using pure HTML/CSS structure.</p>
+    </footer>
+        </div>
+    </div>
+    <hr>
+    <div class="existential">
+        <h1>
+            Existential Intelligence
+        </h1>
+        <p>
+            Existential intelligence is the ninth type of intelligence suggested as an addition to Gardner's original theory. He described existential intelligence as an ability to delve into deeper questions about life and existence. People with this type of intelligence contemplate the "big" questions about topics such as the meaning of life and how actions can serve larger goals.
+        </p>
+        <h3>
+            Strengths
+        </h3>
+        <p>
+            An ability to see the big picture
+        </p>
+        <h3>
+            Characteristics
+        </h3>
+        <p>
+            People with existential intelligence:
+        </p>
+        <ol>
+            <li>
+                Have a long-term outlook.
+            </li>
+            <li>
+                Consider how current actions influence future outcomes.
+            </li>
+            <li>
+                Interest in questions about the meaning of life and death.
+            </li>
+            <li>
+                Strong interest and concern for others.
+            </li>
+            <li>
+                he ability to see situations from an outside perspective.
+            </li>
+        </ol>
+        <h3>
+            Potential Career Choices
+        </h3>
+        <p>
+            If you have a strong sense of existential intelligence, you might enjoy a career as a:
+        </p>
+        <ol>
+            <li>
+                Philosopher
+            </li>
+            <li>
+                Theologian
+            </li>
+            <li>
+                Pastoral counselor
+            </li>
+            <li>
+                Pastor
+            </li>
+        </ol>
+    </div>
+    <hr>
+    <div class="refererence">
+        <a href="https://www.ebooks2go.com/img/samplefiles/9781575425566_Sample.pdf">
+            This book is refered by Dr.Mohammed Yasir.
+        </a>
+    </div>
+    <hr>
+    <h1 style="text-decoration: none;color: cadetblue;">
+        Thank you!
+    </h1>
+    <script>
+
+
+
+        // Global game state variables
+        let boardState = Array(9).fill(null);
+        let currentPlayer = 'X';
+        let isGameActive = true;
+        let winningCells = [];
+
+        // DOM elements
+        const board = document.getElementById('board');
+        const statusMessage = document.getElementById('status-message');
+        const resetButton = document.getElementById('reset-button');
+
+        // All possible winning combinations (indices of boardState array)
+        const WINNING_COMBINATIONS = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+            [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+            [0, 4, 8], [2, 4, 6]             // Diagonals
+        ];
+
+        /**
+         * Renders the initial board structure and attaches click handlers.
+         */
+        function initializeBoard() {
+            board.innerHTML = ''; // Clear previous board
+            for (let i = 0; i < 9; i++) {
+                const cell = document.createElement('div');
+                cell.classList.add('cell');
+                cell.setAttribute('data-index', i);
+                cell.addEventListener('click', () => handleCellClick(i));
+                board.appendChild(cell);
+            }
+            updateStatus();
+        }
+
+        /**
+         * Updates the status message based on the current game state.
+         */
+        function updateStatus() {
+            if (winningCells.length > 0) {
+                statusMessage.textContent = `Player ${currentPlayer === 'X' ? 'O' : 'X'} WINS! 🎉`;
+                statusMessage.classList.remove('text-gray-700');
+                statusMessage.classList.add('text-green-600');
+            } else if (!boardState.includes(null) && isGameActive) {
+                statusMessage.textContent = "It's a DRAW! 🤝";
+                statusMessage.classList.remove('text-gray-700');
+                statusMessage.classList.add('text-yellow-600');
+            } else {
+                statusMessage.textContent = `Player ${currentPlayer}'s Turn`;
+                statusMessage.classList.remove('text-green-600', 'text-yellow-600');
+                statusMessage.classList.add('text-gray-700');
+            }
+        }
+
+        /**
+         * Checks if the current board state results in a winner.
+         * @returns {boolean} True if a winner is found.
+         */
+        function checkWinner() {
+            for (const combination of WINNING_COMBINATIONS) {
+                const [a, b, c] = combination;
+                if (boardState[a] && boardState[a] === boardState[b] && boardState[a] === boardState[c]) {
+                    isGameActive = false;
+                    winningCells = combination;
+                    // Highlight the winning cells
+                    combination.forEach(index => {
+                        board.children[index].classList.add('win');
+                    });
+                    return true;
+                }
+            }
+
+            // Check for draw
+            if (!boardState.includes(null)) {
+                isGameActive = false;
+                return false;
+            }
+
+            return false;
+        }
+
+        /**
+         * Handles the click event on a cell.
+         * @param {number} index - The index of the cell clicked (0-8).
+         */
+        function handleCellClick(index) {
+            // Check if game is active or cell is already filled
+            if (!isGameActive || boardState[index] !== null) {
+                return;
+            }
+
+            // 1. Update state
+            boardState[index] = currentPlayer;
+
+            // 2. Update cell appearance
+            const cell = board.children[index];
+            cell.textContent = currentPlayer;
+            cell.classList.add(currentPlayer);
+
+            // 3. Check for win or draw
+            if (checkWinner()) {
+                updateStatus();
+                return;
+            }
+
+            // 4. Switch player
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+
+            // 5. Update status for next player
+            updateStatus();
+        }
+
+        /**
+         * Resets the entire game state and board.
+         */
+        function resetGame() {
+            boardState = Array(9).fill(null);
+            currentPlayer = 'X';
+            isGameActive = true;
+            winningCells = [];
+            statusMessage.classList.remove('text-green-600', 'text-yellow-600');
+            initializeBoard();
+        }
+
+        // Attach event listener to the reset button
+        resetButton.addEventListener('click', resetGame);
+
+        // Start the game when the window loads
+        window.onload = initializeBoard;
+
+        const canvas = document.getElementById("canvas");
+        const increaseButton = document.getElementById("increase");
+        const decreaseButton = document.getElementById("decrease");
+        const sizeElement = document.getElementById("size");
+        const colorElement = document.getElementById("color");
+        const clearElement = document.getElementById("clear");
+        const ctx = canvas.getContext("2d");
+
+        let size = 10;
+        let color = "black";
+        let x;
+        let y;
+        let isPressed = false;
+
+        const drawCircle = (x, y) => {
+            ctx.beginPath();
+            ctx.arc(x, y, size, 0, Math.PI * 2);
+            ctx.fillStyle = color;
+            ctx.fill();
+        };
+
+        const drawLine = (x1, y1, x2, y2) => {
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.strokeStyle = color;
+            ctx.lineWidth = size * 2;
+            ctx.stroke();
+        };
+
+        const updateSizeOnScreen = () => (sizeElement.innerText = size);
+
+        canvas.addEventListener("mousedown", (e) => {
+            isPressed = true;
+            x = e.offsetX;
+            y = e.offsetY;
+        });
+
+        canvas.addEventListener("mouseup", (e) => {
+            isPressed = false;
+            x = undefined;
+            y = undefined;
+        });
+
+        canvas.addEventListener("mousemove", (e) => {
+            if (isPressed) {
+                x2 = e.offsetX;
+                y2 = e.offsetY;
+                drawCircle(x2, y2);
+                drawLine(x, y, x2, y2);
+                x = x2;
+                y = y2;
+            }
+        });
+
+        increaseButton.addEventListener("click", () => {
+            size += 5;
+            if (size > 50) size = 50;
+            updateSizeOnScreen();
+            });
+
+            decreaseButton.addEventListener("click", () => {
+            size -= 5;
+            if (size < 5) size = 5;
+            updateSizeOnScreen();
+        });
+
+        colorElement.addEventListener("change", (e) => (color = e.target.value));
+
+        clearElement.addEventListener("click", () =>
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+        );
+
+
+            // Function to play the sound
+        function playClickSound() {
+            // 1. Get the audio element using its ID
+            const sound = document.getElementById('music');
+
+             // 2. To allow the sound to be played again quickly (before the previous play finishes),
+            //    we reset the currentTime to 0.
+            sound.currentTime = 0; 
+    
+            // 3. Play the audio
+            sound.play();
+        }
+
+        // Get the button element
+        const button = document.getElementById('play_music');
+
+        // Attach the playClickSound function to the button's click event
+        button.addEventListener('click', playClickSound);   
+
+
+        function submit() {
+            window.alert("submitted")
+        }
+
+        // Global variables and constants
+        const SIZE = 9;
+        const EMPTY_CELL = 0;
+        const MESSAGE_TIMEOUT = 3000;
+
+        // The master solved board
+        const MASTER_SOLUTION = [
+            [5, 3, 4, 6, 7, 8, 9, 1, 2],
+            [6, 7, 2, 1, 9, 5, 3, 4, 8],
+            [1, 9, 8, 3, 4, 2, 5, 6, 7],
+            [8, 5, 9, 7, 6, 1, 4, 2, 3],
+            [4, 2, 6, 8, 5, 3, 7, 9, 1],
+            [7, 1, 3, 9, 2, 4, 8, 5, 6],
+            [9, 6, 1, 5, 3, 7, 2, 8, 4],
+            [2, 8, 7, 4, 1, 9, 6, 3, 5],
+            [3, 4, 5, 2, 8, 6, 1, 7, 9],
+        ];
+
+        // Global variables for the game state
+        let currentBoard = [];
+        let fixedMask = [];
+        let messageTimer = null;
+
+        // DOM Elements
+        const gridContainer = document.querySelector('div[data-grid]');
+        const messageDisplay = document.querySelector('p[data-message]');
+
+        // Utility to display messages
+        function showMessage(text, isError = false) {
+            clearTimeout(messageTimer);
+            messageDisplay.textContent = text;
+            messageDisplay.style.color = isError ? '#ef4444' : '#10b981';
+
+            messageTimer = setTimeout(() => {
+                messageDisplay.textContent = '';
+            }, MESSAGE_TIMEOUT);
+        }
+
+        // --- Sudoku Logic ---
+
+        /**
+         * Checks if a number 'num' can be placed at (row, col) in the board.
+         */
+        function isSafe(board, row, col, num) {
+            // Check row
+            for (let c = 0; c < SIZE; c++) {
+                if (c !== col && board[row][c] === num) return false;
+            }
+
+            // Check column
+            for (let r = 0; r < SIZE; r++) {
+                if (r !== row && board[r][col] === num) return false;
+            }
+
+            // Check 3x3 box
+            const startRow = Math.floor(row / 3) * 3;
+            const startCol = Math.floor(col / 3) * 3;
+            for (let r = 0; r < 3; r++) {
+                for (let c = 0; c < 3; c++) {
+                    const checkRow = startRow + r;
+                    const checkCol = startCol + c;
+                    if ((checkRow !== row || checkCol !== col) && board[checkRow][checkCol] === num) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        /**
+         * Creates the initial puzzle by masking the solution.
+         */
+        function generatePuzzle() {
+            currentBoard = JSON.parse(JSON.stringify(MASTER_SOLUTION));
+            fixedMask = Array.from({ length: 9 }, () => Array(9).fill(false));
+            const cellsToKeep = 25;
+            let keptCount = 0;
+
+            while (keptCount < cellsToKeep) {
+                const r = Math.floor(Math.random() * 9);
+                const c = Math.floor(Math.random() * 9);
+
+                if (!fixedMask[r][c]) {
+                    currentBoard[r][c] = MASTER_SOLUTION[r][c];
+                    fixedMask[r][c] = true;
+                    keptCount++;
+                }
+            }
+
+            for (let r = 0; r < SIZE; r++) {
+                for (let c = 0; c < SIZE; c++) {
+                    if (!fixedMask[r][c]) {
+                        currentBoard[r][c] = EMPTY_CELL;
+                    }
+                }
+            }
+
+            return currentBoard;
+        }
+
+        // --- DOM Rendering and Interaction ---
+
+        /**
+         * Renders the current board state into the HTML grid, applying all styles inline.
+         */
+        function renderBoard() {
+            gridContainer.innerHTML = '';
+
+            for (let r = 0; r < SIZE; r++) {
+                for (let c = 0; c < SIZE; c++) {
+                    const input = document.createElement('input');
+
+                    // 1. Core Attributes
+                    input.setAttribute('type', 'text');
+                    input.setAttribute('maxlength', '1');
+                    input.setAttribute('pattern', '[1-9]');
+                    input.setAttribute('inputmode', 'numeric');
+                    input.setAttribute('data-row', r);
+                    input.setAttribute('data-col', c);
+                    input.setAttribute('data-fixed', fixedMask[r][c]);
+                    input.setAttribute('data-valid', true);
+
+                    const value = currentBoard[r][c];
+                    if (value !== EMPTY_CELL) {
+                        input.value = value.toString();
+                    }
+
+                    // 2. Base Inline Styles
+                    input.style.width = '100%';
+                    input.style.height = '100%';
+                    input.style.textAlign = 'center';
+                    input.style.fontSize = '20px'; /* Using a fixed size as clamp is complex inline */
+                    input.style.fontWeight = '500';
+                    input.style.border = '1px solid #d1d5db';
+                    input.style.outline = 'none';
+                    input.style.margin = '0';
+                    input.style.padding = '0';
+                    input.style.boxSizing = 'border-box';
+                    input.style.transition = 'all 0.1s ease';
+
+                    // 3. Thick Border Logic (Programmatic CSS)
+                    const BORDER_COLOR = '#374151';
+                    if (c === 2 || c === 5) {
+                        input.style.borderRightWidth = '3px';
+                        input.style.borderRightColor = BORDER_COLOR;
+                    }
+                    if (r === 2 || r === 5) {
+                        input.style.borderBottomWidth = '3px';
+                        input.style.borderBottomColor = BORDER_COLOR;
+                    }
+                    if (c === 8) { input.style.borderRightWidth = '1px'; }
+                    if (r === 8) { input.style.borderBottomWidth = '1px'; }
+                    input.style.zIndex = '1';
+
+                    // 4. Fixed vs. Editable Styles and Listeners
+                    if (fixedMask[r][c]) {
+                        // Fixed (Readonly) styles
+                        input.style.backgroundColor = '#e5e7eb';
+                        input.style.fontWeight = '700';
+                        input.style.color = '#1f2937';
+                        input.style.cursor = 'default';
+                        input.setAttribute('readonly', true);
+                    } else {
+                        // Editable styles
+                        input.style.backgroundColor = 'white';
+                        input.style.color = '#10b981';
+                        input.addEventListener('input', handleInput);
+
+                        // Focus/Blur simulation for editable cells
+                        input.addEventListener('focus', function() {
+                            this.style.backgroundColor = '#f0f9ff';
+                            this.style.borderColor = '#3b82f6';
+                            this.style.boxShadow = '0 0 0 2px #93c5fd';
+                            this.style.zIndex = '10';
+                        });
+
+                        input.addEventListener('blur', function() {
+                            // Restore non-focused state, respecting validation color
+                            this.style.borderColor = '#d1d5db';
+                            this.style.boxShadow = 'none';
+                            this.style.zIndex = '1';
+
+                            if (this.getAttribute('data-valid') === 'false' && this.value.trim() !== '') {
+                                this.style.backgroundColor = '#fee2e2';
+                                this.style.color = '#ef4444';
+                                this.style.borderColor = '#ef4444';
+                            } else {
+                                this.style.backgroundColor = 'white';
+                                this.style.color = '#10b981';
+                            }
+                        });
+                    }
+
+                    gridContainer.appendChild(input);
+                }
+            }
+        }
+
+        /**
+         * Handles user input into a cell and applies inline validation styling.
+         */
+        function handleInput(event) {
+            const input = event.target;
+            const r = parseInt(input.getAttribute('data-row'));
+            const c = parseInt(input.getAttribute('data-col'));
+            let value = input.value.trim();
+
+            if (!/^[1-9]$/.test(value)) {
+                input.value = '';
+                currentBoard[r][c] = EMPTY_CELL;
+                input.setAttribute('data-valid', true);
+                input.style.backgroundColor = 'white'; // Clear color on empty
+                input.style.color = '#10b981';
+                input.style.borderColor = '#d1d5db';
+                return;
+            }
+
+            const num = parseInt(value);
+            currentBoard[r][c] = num;
+
+            // Check if the current placement is valid (isSafe uses 0 for self check)
+            currentBoard[r][c] = EMPTY_CELL; // Temporarily unset
+            const isValidPlacement = isSafe(currentBoard, r, c, num);
+            currentBoard[r][c] = num; // Restore value
+
+            input.setAttribute('data-valid', isValidPlacement);
+            applyValidationStyles(input, isValidPlacement);
+
+            validateAllCells(); // Re-validate peers
+
+            const isComplete = currentBoard.every(row => row.every(cell => cell !== EMPTY_CELL));
+            if (isComplete && isValidPlacement) {
+                checkFullSolution();
+            }
+        }
+
+        /**
+         * Applies the red/green validation styles inline to a single input element.
+         */
+        function applyValidationStyles(input, isValid) {
+            if (input.getAttribute('data-fixed') === 'true') return;
+
+            if (isValid) {
+                input.style.backgroundColor = input === document.activeElement ? '#f0f9ff' : 'white';
+                input.style.color = '#10b981';
+                input.style.borderColor = input === document.activeElement ? '#3b82f6' : '#d1d5db';
+            } else {
+                // Invalid style (red)
+                input.style.backgroundColor = '#fee2e2';
+                input.style.color = '#ef4444';
+                input.style.borderColor = '#ef4444';
+            }
+        }
+
+        /**
+         * Re-validates every user-entered cell and updates inline styles.
+         */
+        function validateAllCells() {
+            const inputs = document.querySelectorAll('input[data-fixed="false"]');
+            inputs.forEach(input => {
+                const r = parseInt(input.getAttribute('data-row'));
+                const c = parseInt(input.getAttribute('data-col'));
+                const num = currentBoard[r][c];
+
+                if (num === EMPTY_CELL) {
+                    input.setAttribute('data-valid', true);
+                    input.style.backgroundColor = input === document.activeElement ? '#f0f9ff' : 'white';
+                    input.style.color = '#10b981';
+                    input.style.borderColor = input === document.activeElement ? '#3b82f6' : '#d1d5db';
+                    return;
+                }
+
+                // Check safety against peers
+                currentBoard[r][c] = EMPTY_CELL;
+                const isValid = isSafe(currentBoard, r, c, num);
+                currentBoard[r][c] = num;
+
+                input.setAttribute('data-valid', isValid);
+                applyValidationStyles(input, isValid);
+            });
+        }
+
+        /**
+         * Checks the user's completed board against the official solution.
+         */
+        function checkFullSolution() {
+            const isComplete = currentBoard.every(row => row.every(cell => cell !== EMPTY_CELL));
+            if (!isComplete) {
+                showMessage("The puzzle isn't finished yet!", true);
+                return false;
+            }
+
+            let allCorrect = true;
+            const inputs = document.querySelectorAll('input');
+
+            for (let r = 0; r < SIZE; r++) {
+                for (let c = 0; c < SIZE; c++) {
+                    const cellValue = currentBoard[r][c];
+                    const solutionValue = MASTER_SOLUTION[r][c];
+                    const input = inputs[r * SIZE + c];
+                    const isFixed = input.getAttribute('data-fixed') === 'true';
+
+                    if (cellValue !== solutionValue) {
+                        allCorrect = false;
+                        if (!isFixed) {
+                            input.setAttribute('data-valid', false);
+                            applyValidationStyles(input, false);
+                        }
+                    } else if (!isFixed) {
+                         input.setAttribute('data-valid', true);
+                         applyValidationStyles(input, true);
+                    }
+                }
+            }
+
+            if (allCorrect) {
+                showMessage("Congratulations! You solved the Sudoku!", false);
+                // Disable all inputs after solving
+                inputs.forEach(input => {
+                    input.setAttribute('readonly', true);
+                    input.style.cursor = 'default';
+                });
+            } else {
+                showMessage("Something is still incorrect. Keep going!", true);
+            }
+            return allCorrect;
+        }
+
+        /**
+         * Fills the board with the official solution.
+         */
+        function solvePuzzle() {
+            currentBoard = JSON.parse(JSON.stringify(MASTER_SOLUTION));
+            renderBoard();
+
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.setAttribute('data-valid', true);
+                input.setAttribute('readonly', true);
+                input.style.cursor = 'default';
+                input.style.backgroundColor = '#e5e7eb';
+                input.style.color = '#1f2937';
+                input.style.fontWeight = '700';
+            });
+
+            showMessage("Puzzle solved!", false);
+        }
+
+        /**
+         * Initializes a new game.
+         */
+        function initGame() {
+            generatePuzzle();
+            renderBoard();
+            showMessage("New puzzle started. Good luck!");
+        }
+    </script>
+</body>
+</html>
